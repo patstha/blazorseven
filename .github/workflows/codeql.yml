@@ -65,11 +65,11 @@ jobs:
 
     #   If the Autobuild fails above, remove it and uncomment the following three lines.
     #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
-
-    - name: Build
+    - name: Setup .NET
       uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 7.0.x
+      with:
+        dotnet-version: 7.0.x
+    - name: Build
       run: dotnet build
 
     - name: Perform CodeQL Analysis
