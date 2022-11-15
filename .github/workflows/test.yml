@@ -5,6 +5,8 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+permissions:  # added using https://github.com/step-security/secure-workflows
+  contents: read
 
 jobs:
   test:

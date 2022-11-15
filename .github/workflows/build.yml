@@ -6,12 +6,19 @@ on:
   pull_request:
     branches: [ "master" ]
 
+permissions:  # added using https://github.com/step-security/secure-workflows
+  contents: read
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@v2
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
     - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v2

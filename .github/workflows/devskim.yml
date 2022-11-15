@@ -12,6 +12,8 @@ on:
     branches: [ "master" ]
   schedule:
     - cron: '25 14 * * *'
+permissions:  # added using https://github.com/step-security/secure-workflows
+  contents: read
 
 jobs:
   lint:
