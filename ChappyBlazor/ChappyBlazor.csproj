@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>f8d8a1fb-617d-4cfa-81f2-df2c7b16b524</UserSecretsId>
+		<Version>1.0.1</Version>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Blazor-Analytics" Version="3.11.0" />
+		<PackageReference Include="Microsoft.Azure.SignalR" Version="1.19.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+	</ItemGroup>
+
+</Project>

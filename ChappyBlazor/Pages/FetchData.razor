@@ -1,0 +1,92 @@
+﻿@page "/fetchdata"
+
+<PageTitle>People and Programs Demo (freebie test)</PageTitle>
+
+@using ChappyBlazor.Data
+@using DataAccess.Model
+@using Newtonsoft.Json
+@inject DataService service
+<h1>People and Programs Demo</h1>
+
+<p>This component demonstrates fetching data from a database (limited to 200 results in this demo for performance reasons)</p>
+
+@if (persons == null)
+{
+    <p><em>Loading people...</em></p>
+}
+else
+{
+    <h2>Persons</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Alias</th>
+                <th>Created By</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in persons)
+            {
+                <tr>
+                    <td>@person.Alias</td>
+                    <td>@person.CreatedByName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    if (persons.Count > 0)
+    {
+        <pre style="white-space: pre-wrap;">
+            @JsonConvert.SerializeObject(persons.First(), Formatting.Indented);
+        </pre>
+        <pre>Person results fetched in @persons!.First()!.Stopwatch!.ElapsedMilliseconds milliseconds.</pre>
+    }
+}
+
+
+@if (programs == null)
+{
+    <p><em>Loading programs...</em></p>
+}
+else
+{
+    <h2>Programs</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var program in programs)
+            {
+                <tr>
+                    <td>@program.Title</td>
+                    <td>@program.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    if (programs.Count > 0)
+    {
+        <pre style="white-space: pre-wrap;">
+            @JsonConvert.SerializeObject(programs.First(), Formatting.Indented);
+        </pre>
+        <pre>Program results fetched in @programs!.First()!.Stopwatch!.ElapsedMilliseconds milliseconds.</pre>
+    }
+}
+
+
+@code {
+    private List<MyPerson> persons = new();
+    private List<MyProgram> programs = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        persons = await service.GetPersons();
+        programs = await service.GetPrograms();
+
+    }
+}

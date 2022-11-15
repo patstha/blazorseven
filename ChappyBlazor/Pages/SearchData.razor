@@ -1,0 +1,78 @@
+﻿@page "/searchdata"
+
+<PageTitle>Programs Demo @Query</PageTitle>
+
+@using ChappyBlazor.Data
+@using DataAccess.Model
+@using Newtonsoft.Json
+@inject DataService service
+@inject Blazor.Analytics.IAnalytics Analytics
+<h1>Search Programs Demo @Query</h1>
+
+<p>This component demonstrates searching data from a database (limited to 200 results in this demo for performance reasons)</p>
+
+<form action="" method="get" class="form-example mt-4 mb-4">
+    <div class="input-group input-group-lg mt-4 mb-4">
+        <span class="input-group-text" id="query">Search by title</span>
+        <input type="text" class="form-control" name="query"
+               aria-label="Sizing example input" aria-describedby="query"
+               autocomplete="off" autofocus="autofocus" value="@Query">
+    </div>
+    <div class="form-example">
+        <input type="submit" value="Search!" style="width: 100%;" class="btn btn-primary">
+    </div>
+</form>
+
+@if (programs == null)
+{
+    <p><em>Loading programs...</em></p>
+}
+else
+{
+    @if (string.IsNullOrWhiteSpace(@Query))
+    {
+        <h2>Search programs</h2>
+    }
+    else
+    {
+        <h2>Search programs for @Query</h2>
+    }
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Summary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var program in programs)
+            {
+                <tr>
+                    <td>@program.Title</td>
+                    <td>@program.Summary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    if (programs.Count > 0)
+    {
+        <pre style="white-space: pre-wrap;">
+            @JsonConvert.SerializeObject(programs.First(), Formatting.Indented);
+        </pre>
+        <pre>Program results fetched in @programs!.First()!.Stopwatch!.ElapsedMilliseconds milliseconds.</pre>
+    }
+}
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? Query { get; set; }
+    private List<MyProgram> programs = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Analytics.TrackEvent("search", new { page = "/searchdata", query = Query });
+        programs = await service.SearchProgramByTitle(Query ?? "");
+
+    }
+}
