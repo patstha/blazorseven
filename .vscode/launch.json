@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/ChappyBlazor/bin/Debug/net6.0/ChappyBlazor.dll",
+            "program": "${workspaceFolder}/BlazorSeven/bin/Debug/net6.0/BlazorSeven.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/ChappyBlazor",
+            "cwd": "${workspaceFolder}/BlazorSeven",
             "stopAtEntry": false,
             // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
             "serverReadyAction": {

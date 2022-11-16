@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/ChappyBlazor/ChappyBlazor.csproj",
+                "${workspaceFolder}/BlazorSeven/BlazorSeven.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/ChappyBlazor/ChappyBlazor.csproj",
+                "${workspaceFolder}/BlazorSeven/BlazorSeven.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/ChappyBlazor/ChappyBlazor.csproj"
+                "${workspaceFolder}/BlazorSeven/BlazorSeven.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

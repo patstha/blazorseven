@@ -1,6 +1,6 @@
 using DataAccess.Model;
 
-namespace ChappyBlazor.Data
+namespace BlazorSeven.Data
 {
     public class DataService
     {
