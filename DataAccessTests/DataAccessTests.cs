@@ -15,6 +15,7 @@ public class DataAccessTests
     public async void GetPersons_ShouldReturn()
     {
         // Arrange
+        // add commit after request approval
         string? _connectionString = Configuration["ConnectionStrings:Default"];
         if (string.IsNullOrWhiteSpace(_connectionString))
         {
